@@ -14,10 +14,10 @@ const settingRouter = {
   },
   children: [
     {
-      path: 'taskType',
-      component: () => import('@/views/basic-setting/taskType'),
-      name: 'taskType',
-      meta: { title: '任务类型' }
+      path: 'projectType',
+      component: () => import('@/views/basic-setting/projectType'),
+      name: 'projectType',
+      meta: { title: '项目类型' }
     },
     {
       path: 'positionType',

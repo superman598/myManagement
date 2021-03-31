@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="content">
       <div class="title_content">
-        <img src="../../assets/login_images/login.jpeg" class="login_image">
+        <img src="../../../assets/login_images/login.jpeg" class="login_image">
         <div class="title">
           <h3>欢迎使用</h3>
           <p>设计院项目督办管理系统</p>
@@ -12,15 +12,25 @@
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
         <div class="login_form">
           <div class="login_form_content">
-            <div class="login_title">登录</div>
+            <div class="login_title">密码找回</div>
             <div class="form">
               <el-form-item prop="username">
                 <el-input
                   ref="username"
                   v-model="loginForm.username"
-                  placeholder="请输入内容"
+                  placeholder="请输入账号"
                   prefix-icon="el-icon-user"
                 />
+              </el-form-item>
+              <el-form-item prop="phone">
+                <el-input
+                  ref="phone"
+                  v-model="loginForm.username"
+                  placeholder="请输入手机号"
+                  prefix-icon="el-icon-phone"
+                >
+                  <el-button type="primary" size="mini">发送验证码</el-button>
+                </el-input>
               </el-form-item>
               <el-form-item prop="password">
                 <el-input ref="password" v-model="loginForm.password" placeholder="请输入密码" prefix-icon="el-icon-lock" show-password />
@@ -39,64 +49,6 @@
         </div>
       </el-form>
     </div>
-    <!-- <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
-
-      <div class="title-container">
-        <h3 class="title">Login Form</h3>
-      </div>
-
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
-          type="text"
-          tabindex="1"
-          autocomplete="on"
-        />
-      </el-form-item>
-
-      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
-        <el-form-item prop="password">
-          <span class="svg-container">
-            <svg-icon icon-class="password" />
-          </span>
-          <el-input
-            :key="passwordType"
-            ref="password"
-            v-model="loginForm.password"
-            :type="passwordType"
-            placeholder="Password"
-            name="password"
-            tabindex="2"
-            autocomplete="on"
-            @keyup.native="checkCapslock"
-            @blur="capsTooltip = false"
-            @keyup.enter.native="handleLogin"
-          />
-          <span class="show-pwd" @click="showPwd">
-            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-          </span>
-        </el-form-item>
-      </el-tooltip>
-
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-
-      <div style="position:relative">
-        <div class="tips">
-          <span>Username : admin</span>
-          <span>Password : any</span>
-        </div>
-        <div class="tips">
-          <span style="margin-right:18px;">Username : editor</span>
-          <span>Password : any</span>
-        </div>
-      </div>
-    </el-form> -->
   </div>
 </template>
 
@@ -143,7 +95,6 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
-        // console.log(route, 11111111111)
         const query = route.query
         if (query) {
           this.redirect = query.redirect
@@ -157,6 +108,8 @@ export default {
     // window.addEventListener('storage', this.afterQRScan)
   },
   mounted() {
+    console.log(document.body.clientWidth)
+    console.log(document.body.clientHeight)
     if (this.loginForm.username === '') {
       this.$refs.username.focus()
     } else if (this.loginForm.password === '') {
@@ -169,8 +122,7 @@ export default {
   methods: {
     // 忘记密码
     fogetPwd() {
-      console.log(111111)
-      this.$router.push('/forgetPassword')
+      // this.$router.push('/home')
     },
     checkCapslock(e) {
       const { key } = e
@@ -213,74 +165,9 @@ export default {
         return acc
       }, {})
     }
-    // afterQRScan() {
-    //   if (e.key === 'x-admin-oauth-code') {
-    //     const code = getQueryObject(e.newValue)
-    //     const codeMap = {
-    //       wechat: 'code',
-    //       tencent: 'code'
-    //     }
-    //     const type = codeMap[this.auth_type]
-    //     const codeName = code[type]
-    //     if (codeName) {
-    //       this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-    //         this.$router.push({ path: this.redirect || '/' })
-    //       })
-    //     } else {
-    //       alert('第三方登录失败')
-    //     }
-    //   }
-    // }
   }
 }
 </script>
-
-<style lang="scss">
-/* 修复input 背景不协调 和光标变色 */
-/* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
-
-$bg:#283443;
-$light_gray:#fff;
-$cursor: #000;
-
-// @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
-//   .login-container .el-input input {
-//     color: $cursor;
-//   }
-// }
-
-/* reset element-ui css */
-// .login-container {
-//   .el-input {
-//     display: inline-block;
-//     height: 47px;
-//     width: 85%;
-
-//     input {
-//       background: transparent;
-//       border: 0px;
-//       -webkit-appearance: none;
-//       border-radius: 0px;
-//       padding: 12px 5px 12px 15px;
-//       color: $light_gray;
-//       height: 47px;
-//       caret-color: $cursor;
-
-//       &:-webkit-autofill {
-//         box-shadow: 0 0 0px 1000px $bg inset !important;
-//         -webkit-text-fill-color: $cursor !important;
-//       }
-//     }
-//   }
-
-//   .el-form-item {
-//     border: 1px solid rgba(255, 255, 255, 0.1);
-//     background: rgba(0, 0, 0, 0.1);
-//     border-radius: 5px;
-//     color: #454545;
-//   }
-// }
-</style>
 
 <style lang="scss" scoped>
 $bg:#2d3a4b;
@@ -384,68 +271,5 @@ $bgo:#D6E9FF;
       }
     }
   }
-
-  // .login-form {
-  //   position: relative;
-  //   width: 520px;
-  //   max-width: 100%;
-  //   padding: 160px 35px 0;
-  //   margin: 0 auto;
-  //   overflow: hidden;
-  // }
-
-  // .tips {
-  //   font-size: 14px;
-  //   color: #fff;
-  //   margin-bottom: 10px;
-
-  //   span {
-  //     &:first-of-type {
-  //       margin-right: 16px;
-  //     }
-  //   }
-  // }
-
-  // .svg-container {
-  //   padding: 6px 5px 6px 15px;
-  //   color: $dark_gray;
-  //   vertical-align: middle;
-  //   width: 30px;
-  //   display: inline-block;
-  // }
-
-  // .title-container {
-  //   position: relative;
-
-  //   .title {
-  //     font-size: 26px;
-  //     color: $light_gray;
-  //     margin: 0px auto 40px auto;
-  //     text-align: center;
-  //     font-weight: bold;
-  //   }
-  // }
-
-  // .show-pwd {
-  //   position: absolute;
-  //   right: 10px;
-  //   top: 7px;
-  //   font-size: 16px;
-  //   color: $dark_gray;
-  //   cursor: pointer;
-  //   user-select: none;
-  // }
-
-  // .thirdparty-button {
-  //   position: absolute;
-  //   right: 0;
-  //   bottom: 6px;
-  // }
-
-  // @media only screen and (max-width: 470px) {
-  //   .thirdparty-button {
-  //     display: none;
-  //   }
-  // }
 }
 </style>

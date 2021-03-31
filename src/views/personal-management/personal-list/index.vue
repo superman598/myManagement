@@ -27,6 +27,7 @@
           border
           size="small"
           style="width: 100%;margin-top:20px"
+          :header-cell-style="{background:'#99D4FF',color:'#000'}"
         >
           <el-table-column
             align="center"

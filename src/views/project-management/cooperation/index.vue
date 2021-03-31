@@ -35,6 +35,7 @@
           :data="tableData"
           border
           style="width: 100%;margin-top:20px"
+          :header-cell-style="{background:'#99D4FF',color:'#000'}"
           @cell-mouse-enter="mouseEnter"
           @cell-mouse-leave="mouseLeave"
         >

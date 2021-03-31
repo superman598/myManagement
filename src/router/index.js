@@ -60,6 +60,10 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/forgetPassword',
+    component: () => import('@/views/forgetPassword')
+  },
+  {
     path: '/auth-redirect',
     component: () => import('@/views/login/auth-redirect'),
     hidden: true

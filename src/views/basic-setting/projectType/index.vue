@@ -1,11 +1,11 @@
 <template>
-  <div class="positionContainer">
-    <!-- 职位类型列表 -->
-    <div class="positionContent">
+  <div class="projectContainer">
+    <!-- 项目类型列表 -->
+    <div class="projectContent">
       <!-- 表头和新增按钮 -->
-      <div class="positiontTitle" style="margin-bottom:30px;display:flex;justify-content:space-between;align-items:center">
-        <h2>职位类型</h2>
-        <el-button type="primary" @click="addPosition">新增</el-button>
+      <div class="projectTitle" style="margin-bottom:30px;display:flex;justify-content:space-between;align-items:center">
+        <h2>项目类型</h2>
+        <el-button type="primary" @click="addProject">新增</el-button>
       </div>
       <!-- 表格内容 -->
       <div class="contentTable">
@@ -60,25 +60,25 @@ export default {
       tableData: [
         {
           number: '1',
-          type: 'xx架构师',
+          type: '建筑',
           remarks: 'xxx',
           createTime: '2021-01-01'
         },
         {
           number: '2',
-          type: 'xx工程师',
+          type: '建筑',
           remarks: 'xxx',
           createTime: '2021-01-01'
         },
         {
           number: '3',
-          type: 'xx工程师',
+          type: '建筑',
           remarks: 'xxx',
           createTime: '2021-01-01'
         },
         {
           number: '4',
-          type: 'xx工程师',
+          type: '建筑',
           remarks: 'xxx',
           createTime: '2021-01-01'
         }
@@ -86,14 +86,14 @@ export default {
     }
   },
   methods: {
-    // 新增职位
-    addPosition() {
+    // 新增项目
+    addProject() {
       const h = this.$createElement
       this.$msgbox({
-        title: '新增职位类型',
+        title: '新增任务类型',
         message: h('el-form', null, [
           h('el-form-item', { style: { display: 'inline-block', width: '80px' }}, '类型名称:'),
-          h('el-input', { attrs: { placeholder: '请输入职位' }, style: { display: 'inline-block', width: '200px', margin: '0 0 20px 10px' }}),
+          h('el-input', { attrs: { placeholder: '请输入任务' }, style: { display: 'inline-block', width: '200px', margin: '0 0 20px 10px' }}),
           h('br'),
           h('el-form-item', { style: { display: 'inline-block', width: '80px' }}, '备注:'),
           h('el-input', { attrs: { placeholder: '请输入', type: 'textarea', rows: '3' }, style: { display: 'inline-block', width: '200px', margin: '0 0 20px 10px' }})
@@ -112,12 +112,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-   .positionContainer{
+   .projectContainer{
     width: 95%;
     height: 100%;
     // background-color: red;
     margin: 10px auto;
-    .positionContent{
+    .projectContent{
       margin: 40px 40px 0;
     }
   }
