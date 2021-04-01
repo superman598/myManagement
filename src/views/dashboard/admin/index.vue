@@ -34,7 +34,7 @@
     <div class="taskCard">
       <el-card class="box-card">
         <div class="text item">
-          {{ '总任务 ' + 123 }}
+          {{ '测试卡片 ' + test }}
         </div>
       </el-card>
       <el-card class="box-card">
@@ -184,6 +184,7 @@
 // import RaddarChart from './components/RaddarChart'
 import PieChart from './components/PieChart'
 import BarChart from './components/BarChart'
+import { getTest } from '../../../api/table'
 // import TransactionTable from './components/TransactionTable'
 // import TodoList from './components/TodoList'
 // import BoxCard from './components/BoxCard'
@@ -272,8 +273,14 @@ export default {
           incomplete: '2',
           rate: '80%'
         }
-      ]
+      ],
+      test: ''
     }
+  },
+  mounted() {
+    getTest().then(response => {
+      this.test = response.data.items
+    })
   },
   methods: {
     // handleSetLineChartData(type) {
